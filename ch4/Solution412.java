@@ -4,6 +4,16 @@ import java.util.HashMap;
 
 public class Solution412 {
 
+	/**
+	 * Find a path in a tree, which node sum is equal to the given value.
+	 * Solution: DP
+	 * Time: O(n) n is the node number
+	 * Space: O(1)
+	 * 
+	 * @param root
+	 * @param targetSum
+	 * @return
+	 */
 	public static int pathSum(TreeNode root, int targetSum) {
 		return pathSum(root, targetSum, 0, new HashMap<Integer, Integer>());
 	}
@@ -27,13 +37,7 @@ public class Solution412 {
 	}
 	
 	public static void incrementHashTable(HashMap<Integer, Integer> hashTable, int key, int delta) {
-//		int newCount = hashTable.getOrDefault(key, 0) + delta;
-//		if (newCount == 0) { // Remove when zero to reduce space usage
-//			hashTable.remove(key);
-//		} else {
-//			hashTable.put(key, newCount);
-//		}
-		
+	
 		if (!hashTable.containsKey(key)) {
 			hashTable.put(key, 0);
 		}
@@ -41,30 +45,9 @@ public class Solution412 {
 	}
 
 	public static void main(String [] args) {
-		/*
-		TreeNode root = new TreeNode(5);
-		root.left = new TreeNode(3);		
-		root.right = new TreeNode(1);
-		root.left.left = new TreeNode(-8);
-		root.left.right = new TreeNode(8);
-		root.right.left = new TreeNode(2);
-		root.right.right = new TreeNode(6);	
-		root.right.left.left = new TreeNode(0);	
-		System.out.println(countPathsWithSum(root, 0));
-		*/
-		
-		/*TreeNode root = new TreeNode(-7);
-		root.left = new TreeNode(-7);
-		root.left.right = new TreeNode(1);
-		root.left.right.left = new TreeNode(2);
-		root.right = new TreeNode(7);
-		root.right.left = new TreeNode(3);
-		root.right.right = new TreeNode(20);
-		root.right.right.left = new TreeNode(0);
-		root.right.right.left.left = new TreeNode(-3);
-		root.right.right.left.left.right = new TreeNode(2);
-		root.right.right.left.left.right.left = new TreeNode(1);
-		System.out.println(countPathsWithSum(root, 0));*/
+		/**
+		 * Testing cases
+		 */
 		
 		TreeNode root = new TreeNode(0);
 		root.left = new TreeNode(0);

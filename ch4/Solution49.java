@@ -6,19 +6,36 @@ import java.util.LinkedList;
 import ch4.Solution411.TreeNode;
 
 public class Solution49 {
+
 	/**
-	 * Tree node class
+	 * Find a tree all possible sequence
+	 * Algorithm: dfs (backtracking)
 	 * 
-	 * @author Matrix
-	 *
+	 * @param node
+	 * @return
 	 */
-	// https://github.com/gaylemcd/CtCI-6th-Edition/blob/master/Java/Ch%2004.%20Trees%20and%20Graphs/Q4_09_BST_Sequences/Question.java
-	static class TreeNode{
-		int value;
-		public TreeNode left, right;
-		public TreeNode (int value) {
-			this.value = value;
+	public static ArrayList<LinkedList<Integer>> getAllSeq(TreeNode node) {
+		ArrayList<LinkedList<Integer>> result = new ArrayList<LinkedList<Integer>>();
+		
+		if (node == null) {
+			result.add(new LinkedList<Integer>());
+			return result;
+		} 
+		
+		LinkedList<Integer> prefix = new LinkedList<Integer>();
+		prefix.add(node.value);
+		
+		ArrayList<LinkedList<Integer>> leftSeq = getAllSeq(node.left);
+		ArrayList<LinkedList<Integer>> rightSeq = getAllSeq(node.right);
+		
+		for (LinkedList<Integer> left : leftSeq) {
+			for (LinkedList<Integer> right : rightSeq) {
+				ArrayList<LinkedList<Integer>> weaved = new ArrayList<LinkedList<Integer>>();
+				weaveLists(left, right, weaved, prefix);
+				result.addAll(weaved);
+			}
 		}
+		return result;
 	}
 	
 	public static void insert(TreeNode root, int d) {
@@ -69,30 +86,24 @@ public class Solution49 {
 		second.addFirst(headSecond);
 	}
 	
-	public static ArrayList<LinkedList<Integer>> getAllSeq(TreeNode node) {
-		ArrayList<LinkedList<Integer>> result = new ArrayList<LinkedList<Integer>>();
-		
-		if (node == null) {
-			result.add(new LinkedList<Integer>());
-			return result;
-		} 
-		
-		LinkedList<Integer> prefix = new LinkedList<Integer>();
-		prefix.add(node.value);
-		
-		ArrayList<LinkedList<Integer>> leftSeq = getAllSeq(node.left);
-		ArrayList<LinkedList<Integer>> rightSeq = getAllSeq(node.right);
-		
-		for (LinkedList<Integer> left : leftSeq) {
-			for (LinkedList<Integer> right : rightSeq) {
-				ArrayList<LinkedList<Integer>> weaved = new ArrayList<LinkedList<Integer>>();
-				weaveLists(left, right, weaved, prefix);
-				result.addAll(weaved);
-			}
+	/**
+	 * Tree node class
+	 * 
+	 * @author Matrix
+	 *
+	 */
+	static class TreeNode{
+		int value;
+		public TreeNode left, right;
+		public TreeNode (int value) {
+			this.value = value;
 		}
-		return result;
 	}
-
+	
+	/**
+	 * Testing case
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int[] arr = {100, 50, 20, 75, 150, 120, 170};
 		TreeNode root = new TreeNode(arr[0]);

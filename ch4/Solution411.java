@@ -3,22 +3,6 @@ package ch4;
 import java.util.Random;
 
 public class Solution411 {
-
-	/**
-	 * Tree node structure
-	 * 
-	 * @author Matrix
-	 *
-	 */
-	static class TreeNode {
-		int value;
-		public TreeNode left, right;
-		int size;
-		public TreeNode (int value) {
-			this.value = value;
-			this.size = 1;
-		}
-	}
 	
 	/**
 	 * Random select node from a tree.
@@ -121,6 +105,22 @@ public class Solution411 {
 		
 		for (int i = 0; i < counts.length; i++) {
 			System.out.println(i + ": " + counts[i] + " (" + (double)counts[i] / (double)sample_times * 100 +"%)");
+		}
+	}
+	
+	/**
+	 * Tree node structure
+	 * 
+	 * @author Matrix
+	 *
+	 */
+	static class TreeNode {
+		int value;
+		public TreeNode left, right;
+		int size;
+		public TreeNode (int value) {
+			this.value = value;
+			this.size = 1;
 		}
 	}
 

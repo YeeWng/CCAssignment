@@ -3,6 +3,15 @@ package ch4;
 
 public class Solution45 {
 
+	/**
+	 * Validate one tree is a BST
+	 * Tree traverse (dfs)
+	 * Time: O(n) n is the node number
+	 * Space: O(1)
+	 * 
+	 * @param root
+	 * @return
+	 */
 	public static boolean isValidBST(TreeNode root) {
 		return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
@@ -16,9 +25,13 @@ public class Solution45 {
 				 !isValidBST(node.right, node.value, max);
 	}
 	
+	/**
+	 * Testing cases
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		TreeNode n1 = new TreeNode(2);
-		TreeNode n2 = new TreeNode(1);
+		TreeNode n1 = new TreeNode(1);
+		TreeNode n2 = new TreeNode(2);
 		TreeNode n3 = new TreeNode(3);
 		n1.left = n2;
 		n1.right = n3;

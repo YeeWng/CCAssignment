@@ -4,29 +4,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Solution43 {
-
-	static class TreeNode{
-		int value;
-		public TreeNode left, right;
-		public TreeNode (int value) {
-			this.value = value;
-		}
-	}
 	
-	public static TreeNode createMinimalHeightBST(int arr[], int st, int ed) {
-		if (ed < st)
-			return null;
-		int mid = (st + ed) >> 1;
-		TreeNode n = new TreeNode(arr[mid]);
-		n.left = createMinimalHeightBST(arr, st, mid - 1);
-		n.right = createMinimalHeightBST(arr, mid + 1, ed);
-		return n;
-	}
-	
-	public static TreeNode createMinimalHeightBST(int arr[]) {
-		return createMinimalHeightBST(arr, 0, arr.length - 1);
-	}
-	
+	/**
+	 * Create linked lists for each level nodes of a tree
+	 * 
+	 * Tree lever traverse (bfs) 
+	 * Time: O(n) n is the node number
+	 * Space: O(n) linked lists
+	 * 
+	 * @param root
+	 * @return
+	 */
 	public static LinkedList<LinkedList<TreeNode>> createLevelLinkedList(TreeNode root) {
 		
 		LinkedList<LinkedList<TreeNode>> ret = 
@@ -44,7 +32,6 @@ public class Solution43 {
 				if (u != null) {
 					
 					curr.add(u);
-					
 					System.out.print(u.value + " ");
 					if (u.left != null)
 						q.add(u.left);
@@ -56,6 +43,20 @@ public class Solution43 {
 			ret.add(curr);
 		}
 		return ret;
+	}
+	
+	public static TreeNode createMinimalHeightBST(int arr[], int st, int ed) {
+		if (ed < st)
+			return null;
+		int mid = (st + ed) >> 1;
+		TreeNode n = new TreeNode(arr[mid]);
+		n.left = createMinimalHeightBST(arr, st, mid - 1);
+		n.right = createMinimalHeightBST(arr, mid + 1, ed);
+		return n;
+	}
+	
+	public static TreeNode createMinimalHeightBST(int arr[]) {
+		return createMinimalHeightBST(arr, 0, arr.length - 1);
 	}
 	
 	public static void printLevelLinkedList(LinkedList<LinkedList<TreeNode>> ret) {
@@ -74,6 +75,14 @@ public class Solution43 {
 		
 		System.out.println("----------------");
 		printLevelLinkedList(r);
+	}
+	
+	static class TreeNode{
+		int value;
+		public TreeNode left, right;
+		public TreeNode (int value) {
+			this.value = value;
+		}
 	}
 
 }

@@ -12,7 +12,16 @@ public class Solution42 {
 			this.value = value;
 		}
 	}
-	
+	/**
+	 * Create minimal height BST from array
+	 * Time: O(n) n is the node number
+	 * Space: O(n)
+	 * 
+	 * @param arr
+	 * @param st
+	 * @param ed
+	 * @return
+	 */
 	public static TreeNode createMinimalHeightBST(int arr[], int st, int ed) {
 		if (ed < st)
 			return null;
@@ -27,6 +36,11 @@ public class Solution42 {
 		return createMinimalHeightBST(arr, 0, arr.length - 1);
 	}
 	
+	/**
+	 * Level traverse (bfs)
+	 * 
+	 * @param root
+	 */
 	public static void print_BST(TreeNode root) {
 		Queue<TreeNode> q = new LinkedList<TreeNode>();
 		q.add(root);
@@ -40,15 +54,13 @@ public class Solution42 {
 				
 				if (u != null) {
 					System.out.print(u.value + " ");
-//					if (u.left != null)
-						q.add(u.left);
-//					if (u.right != null)
-						q.add(u.right);
+					q.add(u.left);
+					q.add(u.right);
 				} else {
 					nullCnt++;
 					q.add(null);
 					q.add(null);
-					System.out.print("0 ");
+					System.out.print("* ");
 				}
 			}
 			System.out.println();
@@ -58,6 +70,9 @@ public class Solution42 {
 	}
 	
 	public static void main(String[] args) {
+		/**
+		 * testing cases
+		 */
 		int [] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 		TreeNode root = createMinimalHeightBST(arr);
 		print_BST(root);

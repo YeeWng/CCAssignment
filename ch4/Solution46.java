@@ -14,6 +14,13 @@ public class Solution46 {
 		}
 	}
 	
+	/**
+	 * Find in-order next node in a tree
+	 * Time: O(n) when tree is a linkedlist, n is the number of node
+	 * Space: O(1)
+	 * @param n
+	 * @return
+	 */
 	public static TreeNode inorderSucc(TreeNode n) {
 		if (n == null) return null;
 		
@@ -81,6 +88,10 @@ public class Solution46 {
 		}
 	}
 	
+	/**
+	 * testing cases
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int [] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 		TreeNode root = createMinimalHeightBST(arr);
