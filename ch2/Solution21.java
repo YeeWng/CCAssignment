@@ -6,12 +6,13 @@ import ch2.LinkedListNode;
 public class Solution21 {
 	
 	/**
+	 * This is the original question.
 	 * Algorithm: Simulation
-	 * Time: O(n) 	Space: O(1)
+	 * Time: O(n) 	Space: O(n)
 	 * @param head
 	 * @return
 	 */
-	public static LinkedListNode deleteDups(LinkedListNode head) {
+	public static LinkedListNode deleteDupsOri(LinkedListNode head) {
 		
 		// Edge case 1
 		if (head == null) return null;
@@ -30,6 +31,34 @@ public class Solution21 {
 				prev.next = curr.next;
 			
 			curr = curr.next;
+		}
+		return head;
+	}
+	
+	/**
+	 * This is the follow up question.
+	 * Algorithm: Simulation
+	 * Time: O(n) 	Space: O(1)
+	 * @param head
+	 * @return
+	 */
+	public static LinkedListNode deleteDups(LinkedListNode head) {
+		
+		// Edge case 1
+		if (head == null) return null;
+		
+		// Edge case 2
+		if (head.next == null) return head;
+		
+		LinkedListNode curr = head;
+		while (curr != null) {
+			
+			for (LinkedListNode runner = curr; runner.next != null; ) {
+				if (runner.next.val == curr.val)
+					runner.next = runner.next.next;
+				else
+					runner = runner.next;
+			}
 		}
 		return head;
 	}
