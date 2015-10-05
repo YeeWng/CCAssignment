@@ -1,6 +1,9 @@
 # CCAssignment
 
-Name: Yi Wang
+
+
+
+Name: Yi
 
 Andrew ID: wydaniel
 
