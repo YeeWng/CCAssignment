@@ -15,7 +15,9 @@ import java.util.EmptyStackException;
  * 				list at position idx.
  * 				Time complexity is O(n). n is the number of 
  * 				stacks in the stack list.
- * 				Space complexity is O(1)
+ * 				Space complexity is O(1) no extra space
+ * pop() : 		Time is O(1);
+ * 				Space is O(1);
  * 
  * @author Matrix
  *
