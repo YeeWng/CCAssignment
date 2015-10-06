@@ -13,11 +13,11 @@ import java.util.EmptyStackException;
  * popAt(idx) : First determine the empty stacks in the stack list. Then, 
  * 				remove the empty stack. And then we can pop from the stack 
  * 				list at position idx.
- * 				Time complexity is O(n). n is the number of 
+ * 
+ * 				Time: O(n) n is the number of 
  * 				stacks in the stack list.
- * 				Space complexity is O(1) no extra space
- * pop() : 		Time is O(1);
- * 				Space is O(1);
+ * 
+ * pop() : 		Time: O(1);
  * 
  * @author Matrix
  *
@@ -122,14 +122,16 @@ public class Solution33 {
 			throw new EmptyStackException();
 		int sz = stack_list.size();
 		for (int i = 0; i < sz; i++) {
-			Stack s = stack_list.get(idx);
+			Stack s = stack_list.get(i);
 			if (s.isEmpty())
 				stack_list.remove(i);
 		}
+		if (idx >= sz)
+			throw new Exception("Index out of stack list.");
 		Stack stk = stack_list.get(idx);
 		int v = stk.pop();
 		if (stk.isEmpty())
-			stack_list.remove(stack_list.size() - 1);
+			stack_list.remove(idx - 1);
 		return v;
 	}
 	
@@ -140,15 +142,24 @@ public class Solution33 {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		int capacity_per_substack = 5; //capacity is 5 means the fixed stack is 5
+		// Stack parameter setting
+		int capacity_per_substack = 3; //capacity is 3 means the fixed stack is 5
 		Solution33.capacityEachStack = capacity_per_substack;
+		
 		Solution33 stack = new Solution33();
-		for (int i = 0; i < 34; i++) {
-			stack.push(i);
-		}
-		for (int i = 0; i < 35; i++) {
-			System.out.println("Popped " + stack.pop());
-		}
+		stack.push(2);	// stack 1
+		stack.push(1);
+		stack.push(4);
+		stack.push(3);	// stack 2
+		stack.push(5);
+		stack.push(8);
+		stack.push(9);	// stack 3
+		stack.push(10);
+		
+		System.out.println(stack.pop()); 
+		System.out.println("Follow UP: popAt");
+		System.out.println(stack.popAt(0));
+		System.out.println(stack.popAt(2));
 	}
 
 }
